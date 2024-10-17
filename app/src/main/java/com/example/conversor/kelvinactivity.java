@@ -14,22 +14,21 @@ import androidx.core.view.WindowInsetsCompat;
 
 import nav.Celsius;
 import nav.Farenheit;
-import nav.Grados;
 import nav.Kelvin;
-import nav.grado;
 
-public class celsiusactivity extends AppCompatActivity {
+public class kelvinactivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_celsiusactivity);
+        setContentView(R.layout.activity_kelvinactivity);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         Button buttonCelsius = findViewById(R.id.buttonConvert);
         EditText textoplano = findViewById(R.id.editTextCelsius);
         TextView resultado = findViewById(R.id.textViewResult);
@@ -38,21 +37,20 @@ public class celsiusactivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                Double valorCelsius = Double.parseDouble(textoplano.getText().toString());
+                Double valorkelvin = Double.parseDouble(textoplano.getText().toString());
 
-                Celsius celsius = new Celsius("C",valorCelsius);
-                Kelvin kelvin = new Kelvin("k",celsius.getValor());
-                Celsius convertidoKelvin = celsius.parse(kelvin);
-                Farenheit farenheit = new Farenheit("F",celsius.getValor());
-                Celsius convertidoFarenheit = celsius.parse(farenheit);
+                Kelvin kelvin = new Kelvin("F", valorkelvin);
 
+                Farenheit farenheit = new Farenheit("k",kelvin.getValor());
+                Kelvin convertidorfaren = kelvin.parse(farenheit);
+                Celsius celsius = new Celsius("C",kelvin.getValor());
+                Kelvin convertidorcelsius = kelvin.parse(celsius);
 
-                resultado.setText("Convertido a Kelvin: " + convertidoKelvin.getValor() +
-                        "\nConvertido a Fahrenheit: " + convertidoFarenheit.getValor());
-
+                // Mostrar los resultados en el TextView
+                resultado.setText("Convertido a celsius: " + convertidorcelsius.getValor() +
+                        "\nConvertido a faren: " + convertidorfaren.getValor());
 
             }
         });
     }
-
 }

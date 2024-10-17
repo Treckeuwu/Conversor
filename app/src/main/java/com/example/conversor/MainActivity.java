@@ -34,5 +34,30 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+        Button buttonfaren = findViewById(R.id.botonFaren);
+        buttonfaren.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View view) {
+                Intent explicitIntent = new Intent(MainActivity.this, farenactivity.class);
+                explicitIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(explicitIntent);
+                finish();
+            }
+        });
+        Button buttonkelvin = findViewById(R.id.botonKelvin);
+
+        buttonkelvin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent explicitIntent = new Intent(MainActivity.this, kelvinactivity.class);
+                explicitIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(explicitIntent);
+                finish();
+            }
+        });
+
+
     }
 }
